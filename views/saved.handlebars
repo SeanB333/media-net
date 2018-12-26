@@ -1,0 +1,57 @@
+<!-- Navbar section. -->
+<section>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/articles" style="font-family: 'Rock Salt', cursive">NetScraper</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="/articles">Articles<span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link active" href="/saved">Saved</a>
+      </div>
+    </div>
+  </nav>
+</section>
+
+<!-- Clear all saved articles -->
+<section>
+  <div class="row">
+    <div class="col-12" align="right">
+      <a href="clear-all" class="btn btn-outline-primary scrape-clear-btn" role="button" aria-disabled="true">Clear</a>
+    </div>
+  </div>
+</section>
+
+<section>
+
+  <!-- Saved articles.  -->
+  {{#each saved}}
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow m-3" style="width: 90%;">
+        <div class="card-body">
+          <a href="/delete-one/{{id}}" class="btn btn-outline-danger" id="delete-btn" role="button" aria-disabled="true">X</a>
+          <h5 class="card-title">{{title}}</h5>
+          <p class="card-text">{{summary}}</p>
+          <p class="card-text"><a href="{{link}}" target="_blank">Read the full article</a></p>
+          <hr>
+          <p class="card-text">Note: {{note}}</p>
+          <hr>
+          <form action='note/{{id}}' method='post'>
+            <div class="form-group">
+              <label for="noteFormControlInput">Add a note</label>
+              <input id="noteInput" name="noteId" type="text" class="form-control">
+              <br>
+              <button type="submit" class="btn btn-outline-primary" id="noteBtn">Save note</button>
+              <a href="delete-note/{{id}}" class="btn btn-outline-danger" role="button" aria-disabled="true">Delete
+                note</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</section>
